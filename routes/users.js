@@ -20,14 +20,14 @@ const authorize = function(req, res, next) {
 };
 
 router.get('/', authorize, function(req, res, next) {
-	knex('users')
-	  .orderBy('username')
-	  .then((result) => {
-		res.send(result);
-	  })
-	  .catch((err) => {
-		next(boom.create(500, 'Database Query Failed'));
-	  });
+  knex('users')
+    .orderBy('username')
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      next(boom.create(500, 'Database Query Failed'));
+    });
 });
 
 router.get('/:id', function(req, res, next) {
@@ -51,8 +51,8 @@ router.post('/', (req, res, next) => {
   knex('users')
     .where({ username: req.body.username })
     .then(function(results) {
-		console.log("results" + results);
-	
+      console.log("results" + results);
+
       if (results.length === 0) {
         knex('users')
           .insert({
@@ -60,21 +60,21 @@ router.post('/', (req, res, next) => {
             password: hash,
             email: req.body.email,
             created_at: new Date(),
-            avatar_path: '../public/images/egg.png'
+            avatar_path: 'public/images/whale.svg'
           }, '*')
           .then(function(result) {
-			console.log('user created:',result);
-			let userData=result[0];
-			delete userData.password;
-			delete userData.created_at;
-			delete userData.updated_at;
-			userData.avatarPath=userData.avatar_path;
-			delete userData.avatar_path;
-			console.log('user data returned:',userData);
+            console.log('user created:', result);
+            let userData = result[0];
+            delete userData.password;
+            delete userData.created_at;
+            delete userData.updated_at;
+            userData.avatarPath = userData.avatar_path;
+            delete userData.avatar_path;
+            console.log('user data returned:', userData);
             res.send(userData);
           })
           .catch(function(err) {
-			console.log(err);
+            console.log(err);
             next(boom.create(500, 'Failed to create User'));
           });
       } else {
