@@ -60,7 +60,7 @@ router.post('/', (req, res, next) => {
             password: hash,
             email: req.body.email,
             created_at: new Date(),
-            avatar_path: 'images/whale.svg'
+            avatar_path: 'uploads/whale.svg'
           }, '*')
           .then(function(result) {
             console.log('user created:', result);
