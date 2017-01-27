@@ -86,7 +86,7 @@ router.post('/', function(req, res, next) {
                     knex('uploads')
                         .insert({
                             name: file.name,
-                            file_name: uniqueFileName.slice(uniqueFileName.indexOf('uploads/')),
+                            file_name: uniqueFileName.split('uploads/')[1],
                             // TODO: change category to the download_path, category is temporarily being used as the download path for client's 'file download' links
                             category: 'movie',
                             user_id: user.id
