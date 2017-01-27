@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
         });
 });
 
-router.post('/', authorize, function(req, res, next) {
+router.post('/', function(req, res, next) {
 
     // create an incoming form object
     var form = new formidable.IncomingForm();
@@ -78,7 +78,7 @@ router.post('/', authorize, function(req, res, next) {
             // get uploader's user id
             knex('users')
                 .where({
-                    email: req.token
+                    email: 'dinkydinky@gmail.com'
                 })
                 .select('id')
                 .first()
@@ -86,9 +86,9 @@ router.post('/', authorize, function(req, res, next) {
                     knex('uploads')
                         .insert({
                             name: file.name,
-                            path: uniqueFileName,
+                            file_name: uniqueFileName.slice(uniqueFileName.indexOf('uploads/')),
                             // TODO: change category to the download_path, category is temporarily being used as the download path for client's 'file download' links
-                            category: uniqueFileName.slice(uniqueFileName.indexOf('uploads/upload_')),
+                            category: 'movie',
                             user_id: user.id
                         }, '*')
                         .then((result) => {

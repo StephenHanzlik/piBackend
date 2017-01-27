@@ -19,7 +19,7 @@ const authorize = function(req, res, next) {
   });
 };
 
-router.get('/', authorize, function(req, res, next) {
+router.get('/', function(req, res, next) {
   knex('users')
     .orderBy('username')
     .then((result) => {
