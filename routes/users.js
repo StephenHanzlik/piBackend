@@ -74,6 +74,7 @@ router.post('/', (req, res, next) => {
             res.send(userData);
           })
           .catch(function(err) {
+			console.log(err);
             next(boom.create(500, 'Failed to create User'));
           });
       } else {
