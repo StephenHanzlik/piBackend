@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
 
     knex('uploads')
         .join('users', 'users.id', '=', 'uploads.user_id')
-        .select('uploads.name', 'uploads.category', 'users.username', 'uploads.created_at', 'uploads.path')
+        .select('uploads.name', 'uploads.category', 'users.username', 'uploads.created_at', 'uploads.file_name')
         .orderBy('users.username')
         .then((result) => {
             res.send(result);
