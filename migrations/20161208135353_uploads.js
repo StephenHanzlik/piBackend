@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     // name
     table.string('name').notNullable();
     // path
-    table.string('path').notNullable();
+    table.string('file_name').notNullable();
     // category
     table.string('category').notNullable();
     // user_id
