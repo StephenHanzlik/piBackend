@@ -1,3 +1,7 @@
+body {
+	background-color: rgba(150, 155, 155, .5);
+}
+
 /*SIGN IN*/
 .form-signin {
   max-width: 330px;
@@ -261,7 +265,7 @@ p {
     margin: 0 10px;
     vertical-align: top;
 }*/
-#egg-logo{
+#pray-logo{
   margin: -10px 0 0 10px;
   height: 50px;
 }
